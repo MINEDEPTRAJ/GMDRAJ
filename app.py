@@ -72,13 +72,19 @@ def generate_pdf(row):
     return output_name
 
 @app.route('/', methods=['GET', 'POST'])
-def index():
+@app.route('/<royalty_no>', methods=['GET', 'POST'])
+@app.route('/eRawannaStatus/<royalty_no>', methods=['GET', 'POST'])
+def index(royalty_no=None):
     data = None
     error_msg = ""
     
-    if request.method == 'POST':
-        royalty_no = request.form.get('royalty_no')
-        download = request.form.get('download')
+    if request.method == 'POST' or royalty_no:
+        if request.method == 'POST':
+            royalty_no = request.form.get('royalty_no')
+            download = request.form.get('download')
+        else:
+            download = None
+            
         file_path = 'data.xlsx'
         
         if os.path.exists(file_path):

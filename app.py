@@ -21,15 +21,16 @@ COLUMNS_TO_SHOW = [
     ('Consignee Address', 'Consignee Address')
 ]
 
-def mask_consignee_name(name):
-    if not isinstance(name, str) or not name.strip():
-        return name
-    name = name.strip()
-    if len(name) <= 1:
-        return name
-    first_char = name[0]
-    last_char = name[-1]
-    middle_part = "".join([" " if char == " " else "X" for char in name[1:-1]])
+# Text masking function for both Name and Address
+def mask_text(text):
+    if not isinstance(text, str) or not text.strip():
+        return text
+    text = text.strip()
+    if len(text) <= 1:
+        return text
+    first_char = text[0]
+    last_char = text[-1]
+    middle_part = "".join([" " if char == " " else "X" for char in text[1:-1]])
     return first_char + middle_part + last_char
 
 def generate_pdf(row):
@@ -94,8 +95,14 @@ def index(royalty_no=None):
                 
                 if not match.empty:
                     row = match.iloc[0].copy()
+                    
+                    # Consignee Name ko mask kiya
                     if 'Consignee Name' in row:
-                        row['Consignee Name'] = mask_consignee_name(str(row['Consignee Name']))
+                        row['Consignee Name'] = mask_text(str(row['Consignee Name']))
+                    
+                    # Consignee Address ko bhi mask kiya (Naya badlav)
+                    if 'Consignee Address' in row:
+                        row['Consignee Address'] = mask_text(str(row['Consignee Address']))
                     
                     if download == "true":
                         pdf_file = generate_pdf(row)

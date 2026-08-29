@@ -1,0 +1,9 @@
+{% macro baori(cls='baori', stroke='currentColor') -%}
+<svg class="{{ cls }}" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <rect x="2"  y="2"  width="96" height="96" fill="none" stroke="{{ stroke }}" stroke-width="1.6" opacity="0.28"/>
+  <rect x="14" y="14" width="72" height="72" fill="none" stroke="{{ stroke }}" stroke-width="1.6" opacity="0.42"/>
+  <rect x="26" y="26" width="48" height="48" fill="none" stroke="{{ stroke }}" stroke-width="1.6" opacity="0.6"/>
+  <rect x="38" y="38" width="24" height="24" fill="none" stroke="{{ stroke }}" stroke-width="1.6" opacity="0.8"/>
+  <rect x="46" y="46" width="8" height="8" fill="{{ stroke }}" opacity="0.9"/>
+</svg>
+{%- endmacro %}

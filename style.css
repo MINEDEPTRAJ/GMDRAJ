@@ -1,0 +1,244 @@
+/* ============================================================
+   CHOKHOPANI — design tokens
+   Signature: the baori (stepwell) — Rajasthan's answer to the
+   desert. Concentric receding steps that hold water below the
+   sand line. Used as hero motif, section divider, and the
+   page's loading/scroll marker.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root{
+  --ink:      #0B2E33;   /* deep well-water, near-black */
+  --well:     #0F6674;   /* primary teal-blue */
+  --well-dk:  #0A4B55;
+  --aqua:     #35C4B8;   /* bright accent, used sparingly */
+  --sand:     #E8DFC8;   /* warm desert ground */
+  --sand-dk:  #D9CBA5;
+  --paper:    #FAF7F0;   /* base background */
+  --clay:     #B5652E;   /* CTA / accent, used once per view */
+  --line:     rgba(11,46,51,0.14);
+
+  --font-display: 'Fraunces', serif;
+  --font-body: 'Work Sans', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+
+  --step: 8px;
+  --container: 1180px;
+}
+
+*{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+img{ max-width:100%; display:block; }
+a{ color:inherit; }
+h1,h2,h3{
+  font-family:var(--font-display);
+  font-weight:600;
+  line-height:1.06;
+  margin:0 0 .4em;
+  letter-spacing:-0.01em;
+}
+p{ margin:0 0 1em; }
+.container{ max-width:var(--container); margin:0 auto; padding:0 32px; }
+.eyebrow{
+  font-family:var(--font-mono);
+  font-size:12.5px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--well);
+}
+.btn{
+  display:inline-flex; align-items:center; gap:8px;
+  font-family:var(--font-body); font-weight:600; font-size:15px;
+  padding:13px 26px; border-radius:2px;
+  border:1.5px solid var(--ink); background:transparent; color:var(--ink);
+  text-decoration:none; cursor:pointer; transition:background .15s, color .15s, border-color .15s;
+}
+.btn.primary{ background:var(--clay); border-color:var(--clay); color:var(--paper); }
+.btn.primary:hover{ background:#9A5424; border-color:#9A5424; }
+.btn:not(.primary):hover{ background:var(--ink); color:var(--paper); }
+:focus-visible{ outline:2.5px solid var(--aqua); outline-offset:2px; }
+
+/* ---------- baori (stepwell) motif, reused sitewide ---------- */
+.baori{ display:block; }
+.baori rect{ transition:opacity .4s; }
+
+.step-divider{
+  display:flex; align-items:center; justify-content:center;
+  gap:0; margin:0 auto; padding:56px 0;
+}
+.step-divider .baori{ width:120px; height:120px; opacity:.9; }
+
+/* ---------- header ---------- */
+.site-header{
+  position:sticky; top:0; z-index:40;
+  background:rgba(250,247,240,.92); backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--line);
+}
+.site-header .row{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:18px 32px;
+}
+.brand{
+  display:flex; align-items:center; gap:10px;
+  font-family:var(--font-display); font-weight:700; font-size:22px;
+  text-decoration:none; color:var(--ink);
+}
+.brand .baori{ width:26px; height:26px; }
+.brand small{
+  display:block; font-family:var(--font-mono); font-weight:400;
+  font-size:10.5px; letter-spacing:.12em; color:var(--well); margin-top:-2px;
+}
+nav.main-nav{ display:flex; gap:34px; }
+nav.main-nav a{
+  font-size:14.5px; font-weight:600; text-decoration:none; color:var(--ink);
+  position:relative; padding:4px 0;
+}
+nav.main-nav a.active{ color:var(--well); }
+nav.main-nav a.active::after{
+  content:""; position:absolute; left:0; right:0; bottom:-3px; height:2px; background:var(--aqua);
+}
+.nav-toggle{ display:none; }
+
+/* ---------- hero ---------- */
+.hero{
+  position:relative; overflow:hidden;
+  background:var(--ink); color:var(--paper);
+  padding:100px 0 0;
+}
+.hero .container{
+  display:grid; grid-template-columns:1.1fr .9fr; gap:40px; align-items:center;
+}
+.hero h1{
+  font-size:clamp(42px,5.6vw,74px); color:var(--paper); margin-bottom:.3em;
+}
+.hero h1 em{ font-style:normal; color:var(--aqua); }
+.hero .lede{ font-size:18px; max-width:46ch; color:rgba(250,247,240,.82); }
+.hero .cta-row{ display:flex; gap:14px; margin-top:28px; }
+.hero .cta-row .btn{ border-color:var(--paper); color:var(--paper); }
+.hero .cta-row .btn:not(.primary):hover{ background:var(--paper); color:var(--ink); }
+
+.hero-baori-wrap{ position:relative; display:flex; align-items:center; justify-content:center; padding:40px 0; }
+.hero-baori-wrap .baori{ width:min(420px,90%); height:auto; }
+
+.hero-tagline-strip{
+  border-top:1px solid rgba(250,247,240,.18);
+  margin-top:56px; padding:16px 0;
+  font-family:var(--font-mono); font-size:12.5px; letter-spacing:.1em; color:rgba(250,247,240,.6);
+  display:flex; gap:48px; overflow:hidden; white-space:nowrap;
+}
+
+/* ---------- section scaffolding ---------- */
+section{ padding:88px 0; }
+.section-head{ max-width:640px; margin-bottom:48px; }
+.section-head h2{ font-size:clamp(28px,3.4vw,42px); }
+.alt{ background:var(--sand); }
+
+/* ---------- story / stats ---------- */
+.story-grid{ display:grid; grid-template-columns:.9fr 1.1fr; gap:64px; align-items:start; }
+.story-grid p{ font-size:17px; }
+.stat-list{ display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line); }
+.stat{ background:var(--paper); padding:22px 20px; }
+.stat b{ display:block; font-family:var(--font-mono); font-size:30px; color:var(--well); }
+.stat span{ font-size:13px; color:#4a5c5e; }
+
+/* ---------- process rings ---------- */
+.process-row{ display:grid; grid-template-columns:repeat(4,1fr); gap:28px; }
+.process-card{
+  background:var(--paper); border:1px solid var(--line); padding:26px 22px;
+}
+.process-card .baori{ width:46px; height:46px; margin-bottom:18px; }
+.process-card h3{ font-size:17px; font-family:var(--font-body); font-weight:600; }
+.process-card p{ font-size:14.5px; color:#3d4f51; margin:0; }
+
+/* ---------- products ---------- */
+.product-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
+.product-card{
+  background:var(--paper); border:1px solid var(--line);
+  display:flex; flex-direction:column; overflow:hidden;
+}
+.product-card .art{
+  aspect-ratio:4/3; background:linear-gradient(180deg,var(--sand),var(--sand-dk));
+  display:flex; align-items:center; justify-content:center; position:relative;
+}
+.product-card .art .baori{ width:64px; height:64px; opacity:.5; }
+.product-card .body{ padding:22px; display:flex; flex-direction:column; gap:8px; flex:1; }
+.product-card h3{ font-size:19px; margin:0; }
+.product-card .size{ font-family:var(--font-mono); font-size:12.5px; color:var(--well); letter-spacing:.06em; }
+.product-card p{ font-size:14px; color:#3d4f51; margin:0; flex:1; }
+.product-card .foot{ display:flex; align-items:center; justify-content:space-between; margin-top:10px; }
+.product-card .pack{ font-size:13px; color:#4a5c5e; }
+
+/* ---------- about page specifics ---------- */
+.timeline{ display:flex; flex-direction:column; gap:0; border-left:2px solid var(--line); }
+.tl-item{ padding:0 0 40px 28px; position:relative; }
+.tl-item::before{
+  content:""; position:absolute; left:-6.5px; top:4px; width:11px; height:11px;
+  background:var(--aqua); border-radius:50%;
+}
+.tl-item .yr{ font-family:var(--font-mono); font-size:13px; color:var(--well); }
+.tl-item h3{ font-size:19px; margin:6px 0 6px; }
+.tl-item p{ font-size:15px; color:#3d4f51; margin:0; max-width:56ch; }
+
+.quality-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+.quality-cell{ background:var(--paper); padding:28px 24px; }
+.quality-cell b{ display:block; font-family:var(--font-mono); font-size:26px; color:var(--well); margin-bottom:6px; }
+.quality-cell span{ font-size:13.5px; color:#3d4f51; }
+
+/* ---------- contact ---------- */
+.contact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:64px; }
+.field{ margin-bottom:18px; }
+.field label{ display:block; font-size:13px; font-weight:600; margin-bottom:6px; }
+.field input, .field textarea{
+  width:100%; padding:12px 14px; border:1.5px solid var(--line); background:var(--paper);
+  font-family:var(--font-body); font-size:15px; border-radius:2px; color:var(--ink);
+}
+.field textarea{ min-height:120px; resize:vertical; }
+.field input:focus, .field textarea:focus{ border-color:var(--well); }
+.contact-info dl{ margin:0; }
+.contact-info dt{ font-family:var(--font-mono); font-size:12px; letter-spacing:.1em; color:var(--well); text-transform:uppercase; margin-top:22px; }
+.contact-info dd{ margin:4px 0 0; font-size:15.5px; }
+.form-note{ font-size:13px; color:#4a5c5e; margin-top:10px; }
+.flash{ background:var(--sand); border:1px solid var(--well); padding:14px 16px; margin-bottom:20px; font-size:14.5px; }
+
+/* ---------- footer ---------- */
+footer{ background:var(--ink); color:rgba(250,247,240,.75); padding:56px 0 28px; }
+footer .foot-row{ display:flex; justify-content:space-between; align-items:flex-start; gap:32px; flex-wrap:wrap; }
+footer .brand{ color:var(--paper); }
+footer .brand small{ color:var(--aqua); }
+footer nav{ display:flex; gap:26px; flex-wrap:wrap; }
+footer nav a{ font-size:14px; text-decoration:none; color:rgba(250,247,240,.75); }
+footer .legal{
+  margin-top:40px; padding-top:20px; border-top:1px solid rgba(250,247,240,.14);
+  font-family:var(--font-mono); font-size:11.5px; color:rgba(250,247,240,.5);
+  display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+}
+
+/* ---------- responsive ---------- */
+@media (max-width:900px){
+  .hero .container{ grid-template-columns:1fr; }
+  .story-grid, .contact-grid{ grid-template-columns:1fr; gap:36px; }
+  .process-row{ grid-template-columns:1fr 1fr; }
+  .product-grid{ grid-template-columns:1fr 1fr; }
+  .quality-grid{ grid-template-columns:1fr; }
+  nav.main-nav{ display:none; }
+}
+@media (max-width:560px){
+  .process-row, .product-grid{ grid-template-columns:1fr; }
+  .site-header .row{ padding:14px 20px; }
+  section{ padding:64px 0; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  *{ animation:none !important; transition:none !important; }
+}

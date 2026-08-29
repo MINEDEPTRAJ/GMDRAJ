@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% import "_baori.html" as m %}
+{% block title %}Products — CHOKHOPANI{% endblock %}
+{% block content %}
+
+<section style="padding-bottom:0;">
+  <div class="container section-head">
+    <p class="eyebrow">Products</p>
+    <h2>Every size, the same water.</h2>
+    <p style="max-width:56ch;">From a single serve to a jar for the office cooler — every CHOKHOPANI bottle goes through the same eleven-stage process and the same 121 checks.</p>
+  </div>
+</section>
+
+<section style="padding-top:32px;">
+  <div class="container">
+    <div class="product-grid">
+      {% for p in products %}
+      <div class="product-card">
+        <div class="art">{{ m.baori('baori', '#0F6674') }}</div>
+        <div class="body">
+          <span class="size">{{ p.size }}</span>
+          <h3>{{ p.name }}</h3>
+          <p>{{ p.desc }}</p>
+          <div class="foot">
+            <span class="pack">{{ p.pack }}</span>
+            <a href="{{ url_for('contact') }}" class="btn" style="padding:9px 16px;font-size:13px;">Enquire</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<div class="step-divider">{{ m.baori('baori', '#0F6674') }}</div>
+
+<section class="alt">
+  <div class="container">
+    <div class="section-head"><p class="eyebrow">For business</p><h2>Bulk and HoReCa supply.</h2></div>
+    <div class="quality-grid">
+      <div class="quality-cell"><b>Retail</b><span>Kirana, modern trade and general stores — case and half-case orders.</span></div>
+      <div class="quality-cell"><b>HoReCa</b><span>Hotels, restaurants and cafés — standing weekly or monthly supply.</span></div>
+      <div class="quality-cell"><b>Events</b><span>Weddings, functions and offices — jar coolers and bulk cartons on request.</span></div>
+    </div>
+    <div style="margin-top:32px;"><a href="{{ url_for('contact') }}" class="btn primary">Talk to our sales team</a></div>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% import "_baori.html" as m %}
+{% block content %}
+
+<section class="hero">
+  <div class="container">
+    <div>
+      <p class="eyebrow">Bottled in Rajasthan</p>
+      <h1>Water, kept the<br>way the desert<br>keeps it — <em>chokho</em>.</h1>
+      <p class="lede">In Marwari, <em>chokho</em> means fine, clean, the genuine article. CHOKHOPANI is drinking water bottled the same way a Rajasthani stepwell holds it: still, protected, and true to source.</p>
+      <div class="cta-row">
+        <a href="{{ url_for('products') }}" class="btn primary">See products</a>
+        <a href="{{ url_for('about') }}" class="btn">Our process</a>
+      </div>
+    </div>
+    <div class="hero-baori-wrap">
+      {{ m.baori('baori', '#FAF7F0') }}
+    </div>
+  </div>
+  <div class="hero-tagline-strip">
+    <div class="container" style="display:flex;gap:48px;">
+      <span>PIO YA JIO</span><span>11-STAGE PURIFICATION</span><span>SOURCED IN RAJASTHAN</span>
+      <span>PIO YA JIO</span><span>ADDED MINERALS</span><span>TESTED EVERY BATCH</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container story-grid">
+    <div>
+      <p class="eyebrow">Why chokho</p>
+      <h2>A stepwell doesn't chase the water. It waits, low and patient, until the water is worth drinking.</h2>
+    </div>
+    <div>
+      <p>Rajasthan's baoris were built centuries before pipelines — stepped, shaded, sealed against the sand above. CHOKHOPANI follows the same instinct: draw from a protected source, filter in eleven stages, and seal it before the desert gets a chance to touch it.</p>
+      <p>No shortcuts between the source and the seal. What leaves our plant is what reaches you.</p>
+      <div class="stat-list">
+        <div class="stat"><b>11</b><span>purification stages</span></div>
+        <div class="stat"><b>121</b><span>quality checks per batch</span></div>
+        <div class="stat"><b>5</b><span>bottle sizes</span></div>
+        <div class="stat"><b>0</b><span>discharge, zero waste plant</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="step-divider">{{ m.baori('baori', '#0F6674') }}</div>
+
+<section class="alt">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">How it's made</p>
+      <h2>From borewell to bottle, in four checked stages.</h2>
+    </div>
+    <div class="process-row">
+      <div class="process-card">{{ m.baori('baori', '#0F6674') }}<h3>Source</h3><p>Drawn from a protected groundwater source, tested before it enters the plant.</p></div>
+      <div class="process-card">{{ m.baori('baori', '#0F6674') }}<h3>Purify</h3><p>Eleven filtration and UV stages remove sediment, microbes, and odour.</p></div>
+      <div class="process-card">{{ m.baori('baori', '#0F6674') }}<h3>Mineralise</h3><p>Essential minerals are added back for taste and balance.</p></div>
+      <div class="process-card">{{ m.baori('baori', '#0F6674') }}<h3>Seal</h3><p>Filled and sealed on-line, batch-tested before it leaves the plant.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;">
+      <div>
+        <p class="eyebrow">The range</p>
+        <h2>A size for every table.</h2>
+      </div>
+      <a href="{{ url_for('products') }}" class="btn">View all products</a>
+    </div>
+    <div class="product-grid">
+      {% for p in products[:3] %}
+      <div class="product-card">
+        <div class="art">{{ m.baori('baori', '#0F6674') }}</div>
+        <div class="body">
+          <span class="size">{{ p.size }}</span>
+          <h3>{{ p.name }}</h3>
+          <p>{{ p.desc }}</p>
+          <div class="foot"><span class="pack">{{ p.pack }}</span></div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}
